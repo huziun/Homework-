@@ -105,4 +105,5 @@ def Start():
     energy = Rename(energy, dict, 'Country Name');
     energy = RemoveBrackets(energy)
     return energy;
-Start();
+
+#Start();
