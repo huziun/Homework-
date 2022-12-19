@@ -32,7 +32,7 @@ def answer_three():
 
 def answer_four():
     Frame = answer_one();
-    Frame = Create_Columns.NewColumn(Frame, 'Citations', 'Self-citations', 'ratio');
+    Frame = Create_Columns.NewColumn(Frame, 'Self-citations', 'Citations', 'ratio');
     Frame = Frame.sort_values(by='ratio', ascending=False);
     return Frame.iloc[0].name, Frame.iloc[0]['ratio'];
 
@@ -40,14 +40,13 @@ class PFrame:
     def __init__(self):
         self.pframe = []
 pframe = PFrame()
+
 def answer_five():
     Frame = answer_one();
     #Frame = Create_Columns.NewColumn(Frame, 'Energy Supply', 'Energy Supply per capita', 'population');
     Frame = Create_Columns.Five_newColumn(Frame);
     Frame = Frame.sort_values(by='population', ascending=False);
     pframe.pframe = Frame['population']
-
-
     return Frame.iloc[2].name;
 
 def answer_six():
@@ -120,12 +119,6 @@ def answer_seven():
     df = merge(df, mean, "mean")
     df = merge(df, std, "std")
     return df.set_index("Continent")
-
-
-
-
-
-
 
 def Start():
     print("1")
