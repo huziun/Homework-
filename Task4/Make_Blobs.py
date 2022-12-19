@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 from matplotlib.colors import ListedColormap
 import iris_set;
+import boundary;
 
 def Vizual():
     cmap_bold = ListedColormap(['blue','#FFFF00','black','green']);
@@ -25,7 +26,11 @@ def GetData():
 def Start():
     X, y = Vizual();
     makeBlobs = GetData();
-    print(makeBlobs);
     X_train, X_test, y_train, y_test = iris_set.Split(X, y);
     X_train, X_test = iris_set.Normalization(X_train, X_test);
-    iris_set.Classification(X_train, X_test, y_train, y_test);
+    knn = iris_set.Classification(X_train, X_test, y_train, y_test);
+    boundary.decision_boundary(knn, X, y);
+    plt.show();
+
+
+

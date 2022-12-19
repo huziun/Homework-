@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-def decision_boundary(X, y):
+def decision_boundary(knn, X, y):
     min1, max1 = X[:, 0].min() - 1, X[:, 0].max() + 1
     min2, max2 = X[:, 1].min() - 1, X[:, 1].max() + 1
 
@@ -14,17 +14,12 @@ def decision_boundary(X, y):
     r1, r2 = r1.reshape((len(r1), 1)), r2.reshape((len(r2), 1))
 
     grid = np.hstack((r1, r2))
-
-    model = LogisticRegression()
-
-    model.fit(X, y)
-
+    model = knn;
     yhat = model.predict(grid)
-
     zz = yhat.reshape(xx.shape)
-
-    plt.contourf(xx, yy, zz, cmap='Paired')
+    plt.contourf(xx, yy, zz)
 
     for class_value in range(2):
         row_ix = np.where(y == class_value)
-        plt.scatter(X[row_ix, 0], X[row_ix, 1], cmap='Paired')
+        plt.scatter(X[row_ix, 0], X[row_ix, 1]);
+

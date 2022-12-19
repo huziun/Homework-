@@ -7,7 +7,6 @@ from sklearn.metrics import confusion_matrix
 
 def GetData():
     iris = load_iris();
-    print('data contains:', iris.keys());
     return iris;
 
 def GetX_Y(iris):
@@ -55,7 +54,6 @@ def Start():
     iris = GetData();
     X, y, labels, feature_names = GetX_Y(iris);
     df_iris = DF_Iris(X, y, labels, feature_names);
-    print(df_iris);
     X_train, X_test, y_train, y_test = Split(X, y);
     X_train_scaled, X_test_scaled = Normalization(X_train, X_test);
     Classification(X_train_scaled, X_test_scaled, y_train, y_test);
