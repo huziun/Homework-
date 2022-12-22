@@ -76,7 +76,7 @@ train accuracy= 100.000%
 
 test accuracy= 98.601%
 
-![](https://cdn.discordapp.com/attachments/753602758023839817/1055419745052147722/image.png)
+![img_2.png](img_2.png)
 
 # Boundary
 X.shape=  (569, 2)
@@ -98,7 +98,7 @@ train accuracy= 98.826%
 
 test accuracy= 95.804%
 
-![](https://cdn.discordapp.com/attachments/753602758023839817/1055420499137667173/image.png)
+![img_3.png](img_3.png)
 # Boundary
 X.shape=  (569, 2)
 

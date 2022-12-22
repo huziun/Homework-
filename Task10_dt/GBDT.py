@@ -1,38 +1,25 @@
 import DataSet;
-import numpy as np;
-from sklearn.datasets import load_breast_cancer;
 from sklearn.ensemble import GradientBoostingClassifier;
 import matplotlib.pyplot as plt;
 import Boundary;
 
-def plot_multi_class_logistic_regression(X,y,dict_names=None, colors= None,  title =None):
+def plot_data_logistic_regression(X, y, label, legend_loc= None, title= None):
     '''
-    Draw the multi class samples of 2 features
-    :param X: X 2 ndarray (m,2),
-    :param y: vector (m,)
-    :param dict_names: dict of values of y and names
-    :return: None
+    :param X: 2 dimensional ndarray
+    :param y:  1 dimensional ndarray. Use y.ravel() if necessary
+    :return:
     '''
-    if not colors:
-        colors_for_points = ['green','grey', 'orange', 'brown']
-    else:
-         colors_for_points = colors
 
-    y_unique = list(set(y))
+    positive_indices = (y == 1)
+    negative_indices = (y == 0)
+#     import matplotlib as mpl
+    colors_for_points = ['blue', 'yellow'] # ne=g/pos
 
-    for i in range (len(y_unique)):
-        ind = y == y_unique[i] # vector
-
-        if dict_names:
-            plt.scatter(X[ind,0], X[ind,1], c=colors_for_points[i], s=40, label=dict_names[y_unique[i]],edgecolor='black', alpha=.7)
-        else:
-            plt.scatter(X[ind, 0], X[ind, 1], s=40, c=colors_for_points [i], edgecolor = 'black', alpha = 0.7)
-    if title:
-        plt.title(title)
-
-    if dict_names:
-        plt.legend(frameon=True)
-
+    plt.scatter(X[negative_indices][:,0], X[negative_indices][:,1], s=40, c=colors_for_points [0], edgecolor = 'black', label=label[0], alpha = 0.7)
+    plt.scatter(X[positive_indices][:,0], X[positive_indices][:,1], s=40, c=colors_for_points [1], edgecolor = 'black',label=label[1], alpha = 0.7)
+    plt.title(title)
+    plt.legend(loc=legend_loc)
+    return 0;
 
 def Model(X_train, X_test, y_train, y_test):
     clf = GradientBoostingClassifier(learning_rate=0.01, max_depth=3).fit(X_train, y_train);
@@ -50,9 +37,8 @@ def boundary():
 def Start():
     X, y, labels, features = DataSet.get_data()
     X_train, X_test, y_train, y_test = DataSet.Split(X, y);
-    bs_dict = dict(zip(np.unique(y), labels));
     plt.figure()
-    plot_multi_class_logistic_regression(X, y, dict_names=bs_dict);
+    plot_data_logistic_regression(X, y, label=labels);
     plt.show();
     clf = Model(X_train, X_test, y_train, y_test);
     boundary();
