@@ -1,15 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np;
-import pandas as pd;
 from mlxtend.plotting import plot_decision_regions
-import DataSet;
+import pandas as pd;
 
-def PlotBoundary(clf):
-    X, y, labels, features = DataSet.get_dataFor_Boundary();
-    X_train, X_test, y_train, y_test = DataSet.Split(X, y);
-    clf.fit(X, y);
-    plot_labeled_decision_regions(X, y, clf);
-    return 0;
 
 def plot_labeled_decision_regions(X, y, models):
 

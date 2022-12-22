@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt;
 import pandas as pd;
 import visual;
 
-
 def GetData():
      data = load_breast_cancer();
      df = pd.DataFrame(data.data, columns=data.feature_names);
@@ -29,13 +28,12 @@ X_train, X_test, y_train, y_test = Split(X_cancer, y_cancer);
 clf = LogisticRegression(max_iter=1000, C=1).fit(X_train, y_train);
 
 def Visual_Boundary():
-
+     visual.plot_data_logistic_regression(X_cancer, y_cancer);
+     plt.show();
      return 0;
 
 print('X_cancer.shape= {}'.format(X_cancer.shape));
 print('\nBreast cancer dataset');
 print('Accuracy of Logistic regression classifier on training set: {:.2f}'.format(clf.score(X_train, y_train)));
 print('Accuracy of Logistic regression classifier on test set: {:.2f}'.format(clf.score(X_test, y_test)));
-
-visual.plot_data_logistic_regression(X_cancer, y_cancer);
-plt.show();
+Visual_Boundary();
