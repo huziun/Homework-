@@ -26,7 +26,7 @@ def Model(n):
     return clf;
 
 def Predict(clf):
-    predicted= clf.predict(Xc_2)
+    predicted = clf.predict(Xc_2)
     return predicted;
 
 def Draw(predicted, clf):
@@ -55,14 +55,11 @@ def Start():
         array_score.append(score);
         array_nclaster.append(number);
 
-
     plt.figure()
     plt.plot(array_nclaster, array_score)
     plt.xlabel('N clusters')
     plt.ylabel('Accuracy score')
     plt.show()
-
-
 
 Start();
 

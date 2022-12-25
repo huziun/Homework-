@@ -34,6 +34,22 @@ Score:  0.155
 # Accuracy score x number of clusters
 ![img_8.png](img_8.png)
 
+#K-means Sklearn part 2
+
+view dataset:
+![img_9.png](img_9.png)
+
+# for 4 clusters 
+![img_12.png](img_12.png)
+
+![img_13.png](img_13.png)
+
+# for 6 clusters
+![img_10.png](img_10.png)
+
+![img_11.png](img_11.png)
+
+
 
 
 
