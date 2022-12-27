@@ -20,7 +20,7 @@ def GetTwo():
 
 def Model(X, y):
     clf = SVC(C=1, gamma=gamma).fit(X, y) # rbf is default
-    print("train accuracy= {:.3%}".format(clf.score (X, y)))
+    print("train accuracy= {:.3%}".format(clf.score(X, y)))
     return clf;
 
 def Boundary():
