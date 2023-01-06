@@ -4,9 +4,12 @@ from sklearn.linear_model import LinearRegression;
 from sklearn.linear_model import LogisticRegression;
 from sklearn.ensemble import RandomForestClassifier;
 from sklearn.model_selection import train_test_split;
+from sklearn.model_selection import cross_validate;
 import matplotlib.pyplot as plt;
 import numpy as np;
 import seaborn as sns
+
+#~~~Train.csv~~~
 
 def ReadFile():
     File_name = 'train.csv';
@@ -27,20 +30,23 @@ def Get_Y(data_set):
     y = data_set[['Survived']];
     return y;
 
+#~~~check data~~~
+
 def NoneData(data_set, column):
     count = 0;
     check_columns = data_set[column];
     count_nan = check_columns.isnull().sum();
     for item in data_set[column]:
-
+        print(item);
         count += 1;
         if item is np.nan:
-            print(item);
+
             print(count);
     return count_nan;
 
+#~~~Convert data~~~
+
 def Convert_Name(data_set):
-    #data_set.Name = lambda x: x.replace(' ', '');
     data_set.Name = data_set.Name.str.extract('\, ([A-Z][^ ]*\.)', expand=False);
     data_set.Name = lambda x: x if x is not None else 'Mr.';
     return data_set;
@@ -53,12 +59,16 @@ def Convert_Drob(data_set):
     data_set['Age'] = data_set['Age'].apply(lambda x: x * 100 if x < 1 else x);
     return data_set;
 
+#~~~Fill space~~~
+
 def Fill_NA_Age(data_set):
     data_set['Age'].fillna(data_set['Age'].mean(), inplace=True);
     return data_set;
 
 def Fill_NA_Fare(data_set):
-    data_set['Fare'].fillna(data_set['Age'].mean(), inplace=True);
+    data_set['Fare'].fillna(data_set['Age'].mean(
+
+    ), inplace=True);
     return data_set
 
 def PrepareDATASET_Train():
@@ -94,6 +104,8 @@ def Split():
 
 X_train, X_test, y_train, y_test = Split();
 
+#~~~Train Models~~~
+
 def Model_SVC(X, y):
     clf = SVC(C=2, gamma=3).fit(X, y) # rbf is default
     print("SVM train accuracy= {:.3%}".format(clf.score(X, y)))
@@ -114,6 +126,8 @@ def Model_RandomForest(X, y):
     accuracy_train = clf.score(X, y)
     print("RandomForestClassifier train accuracy= {:.3%}".format(clf.score(X, y)));
     return clf;
+
+#~~~Test.csv~~~
 
 def Read_Test():
     File_name = 'test.csv';
@@ -141,6 +155,8 @@ def PrepareDARASET_Test():
     data_set21 = Convert_Drob(data_set21);
     data_set21 = Convert_Sex(data_set21);
     data_set21 = Fill_NA_Age(data_set21);
+    print()
+    print(NoneData(data_set21, 'Fare'))
     data_set21 = Fill_NA_Fare(data_set21);
     return data_set21;
 
